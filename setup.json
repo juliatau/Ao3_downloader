@@ -1,0 +1,5 @@
+{
+    username: "your username",
+    password: "Your password",
+    downloadPath: "~/Downloads/ao3/" // default
+}
