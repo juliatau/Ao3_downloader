@@ -1,5 +1,6 @@
 {
-    username: "your username",
-    password: "Your password",
-    downloadPath: "~/Downloads/ao3/" // default
+    "username": "userName",
+    "password": "password",
+    "downloadPath": "~/Downloads/ao3",
+    "format": "epub"
 }
