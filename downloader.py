@@ -77,11 +77,11 @@ def checkCacheFile(works):
 
 def filterWitchToDownload(works):
     directoryPath = compose(os.path.realpath, os.path.dirname)(__file__)
-     return compose(
-         lambda cache: os.path.join(directoryPath, cache),
-         checkCacheFile(works),
-         filterWorks(works),
-     )(CACHE)
+    return compose(
+        lambda cache: os.path.join(directoryPath, cache),
+        checkCacheFile(works),
+        filterWorks(works),
+    )(CACHE)
 
 def downloadWorks(path, dFormat):
     def downloadWorks_(works):
