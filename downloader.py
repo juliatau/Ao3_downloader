@@ -90,7 +90,7 @@ def downloadWorks(path, dFormat):
         threads = []
         for work in works:
             print(f"{Fore.BLUE}downloading{Fore.RESET} {work.title}")
-            fileName = f"\"{work.title}.{dFormat}\"".replace("/", "\\")
+            fileName = f"{work.title}.{dFormat}".replace("/", "\\")
             filePath = os.path.join(path, fileName)
             newThread = threading.Thread(target=lambda : work.download_to_file(filePath, dFormat), args=())
             newThread.start()
