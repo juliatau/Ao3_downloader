@@ -120,7 +120,9 @@ def makePath(string):
     )(string)
 
 def main():
-    setup = openJson(os.path.join(os.path.dirname(__file__), "setup.json"))
+    directoryPath = compose(os.path.realpath, os.path.dirname)(__file__)
+    print(directoryPath)
+    setup = openJson(os.path.join(directoryPath, "setup.json"))
     downloadPath = makePath(setup["downloadsPath"])
     os.makedirs(downloadPath, exist_ok=True),
     compose(
