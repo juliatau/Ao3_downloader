@@ -76,8 +76,9 @@ def checkCacheFile(works):
     return checkCacheFile_
 
 def filterWitchToDownload(works):
+    directoryPath = compose(os.path.realpath, os.path.dirname)(__file__)
      return compose(
-         lambda path: os.path.join(os.path.dirname(__file__), path),
+         lambda cache: os.path.join(directoryPath, cache),
          checkCacheFile(works),
          filterWorks(works),
      )(CACHE)
