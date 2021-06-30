@@ -113,16 +113,23 @@ def loadWorkMetadata(works):
         thread.join()
     return loadedWorks
 
+def makePath(string):
+    return compose(
+        os.path.expanduser,
+        os.path.expandvars,
+    )(string)
+
 def main():
     setup = openJson(os.path.join(os.path.dirname(__file__), "setup.json"))
-    os.makedirs(setup["downloadPath"], exist_ok=True),
+    downloadPath = makePath(setup["downloadsPath"])
+    os.makedirs(downloadPath, exist_ok=True),
     compose(
         lambda setup: AO3.Session(setup["username"], setup["password"]),
         lambda session: session.get_work_subscriptions(use_threading=True),
         lambda works: works,
         loadWorkMetadata,
         filterWitchToDownload,
-        downloadWorks(setup["downloadPath"], setup["format"]),
+        downloadWorks(downloadPath, setup["format"]),
     )(setup)
 
 
