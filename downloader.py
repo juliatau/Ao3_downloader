@@ -108,14 +108,11 @@ def loadWorkMetadata(works):
     threads = []
     loadedWorks = []
     print(f"starting to check you {Fore.CYAN}{len(works)}{Fore.RESET} subsciption")
-    try:
-        for work in works:
-            loadedWorks.append(work)
-            threads.append(work.reload(threaded=True))
-            for thread in threads:
-                thread.join()
-    except Warning:
-        print(r"{Fore.ORANGE}This is can take a few momment{Fore.RESET}")
+    for work in works:
+        loadedWorks.append(work)
+        threads.append(work.reload(threaded=True, load_chapters=False))
+    for thread in threads:
+        thread.join()
     return loadedWorks
 
 def makePath(string):
