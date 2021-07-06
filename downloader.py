@@ -10,6 +10,8 @@ from colorama import Fore
 import threading
 import warnings
 
+warnings.filterwarnings("ignore")
+
 CACHE="cache.json"
 
 def compose(*functions):
