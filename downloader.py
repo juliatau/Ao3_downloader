@@ -61,6 +61,7 @@ def writeCacheFile(cacheFile):
 
 def checkCacheFile(works):
     def checkCacheFile_(path):
+        print(f"{path}")
         cacheFileExist = os.path.exists(path)
         if not cacheFileExist:
             cacheDict = {}
