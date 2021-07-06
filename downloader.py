@@ -105,11 +105,10 @@ def downloadWorks(path, dFormat):
     return downloadWorks_
 
 def loadWorkMetadata(work):
-    print(f"{work}")
-    # with warnings.catch_warnings(record=True) as w:
-    #     work.reload(load_chapters=False)
-    #     if len(w) != 0:
-    #         print(f"{work.titles} might take a while")
+    with warnings.catch_warnings(record=True) as w:
+        work.reload(load_chapters=False)
+        if len(w) != 0:
+            print(f"{work.titles} might take a while")
 
     return None
 
