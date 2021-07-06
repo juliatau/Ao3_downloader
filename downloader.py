@@ -104,7 +104,8 @@ def downloadWorks(path, dFormat):
 
     return downloadWorks_
 
-def loadWorkMetadata(work):
+def loadWorkMetadata(*args):
+    work = args[0]
     with warnings.catch_warnings(record=True) as w:
         work.reload(load_chapters=False)
         if len(w) != 0:
