@@ -108,7 +108,7 @@ def loadWorkMetadata(work):
     with warnings.catch_warnings(record=True) as w:
         work.reload(load_chapters=False)
         if len(w) != 0:
-            print(f"{work.titles} might take a while")
+            print(f"{work.title} might take a while")
 
     return None
 
