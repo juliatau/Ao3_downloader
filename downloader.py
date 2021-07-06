@@ -8,6 +8,7 @@ import operator
 import re
 from colorama import Fore
 import threading
+import warnings
 
 CACHE="cache.json"
 
@@ -107,11 +108,14 @@ def loadWorkMetadata(works):
     threads = []
     loadedWorks = []
     print(f"starting to check you {Fore.CYAN}{len(works)}{Fore.RESET} subsciption")
-    for work in works:
-        loadedWorks.append(work)
-        threads.append(work.reload(threaded=True))
-    for thread in threads:
-        thread.join()
+    try:
+        for work in works:
+            loadedWorks.append(work)
+            threads.append(work.reload(threaded=True))
+            for thread in threads:
+                thread.join()
+    exec Warning:
+        print(r"{Fore.ORANGE}This is can take a few momment{Fore.RESET}")
     return loadedWorks
 
 def makePath(string):
@@ -122,7 +126,6 @@ def makePath(string):
 
 def main():
     directoryPath = compose(os.path.realpath, os.path.dirname)(__file__)
-    print(directoryPath)
     setup = openJson(os.path.join(directoryPath, "setup.json"))
     downloadPath = makePath(setup["downloadsPath"])
     os.makedirs(downloadPath, exist_ok=True),
