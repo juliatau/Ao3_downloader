@@ -119,7 +119,7 @@ def loadWorkMetadata(works):
     print(f"starting to check you {Fore.CYAN}{len(works)}{Fore.RESET} subsciption")
     for work in works:
         loadedWorks.append(work)
-        newThread = threading.Thread(target=loadWorkMetadata, args=(work))
+        newThread = threading.Thread(target=loadWorkMetadata, args=([work]))
         newThread.start()
         threads.append(newThread)
     for thread in threads:
