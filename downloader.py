@@ -112,7 +112,6 @@ def loadWorkMetadata(work):
         work.reload(load_chapters=False)
         if len(w) != 0:
             print(f"{work.title} might take a while")
-
     return None
 
 def loadWorksMetadata(works):
