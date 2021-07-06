@@ -113,7 +113,7 @@ def loadWorkMetadata(work):
 
     return None
 
-def loadWorkMetadata(works):
+def loadWorksMetadata(works):
     threads = []
     loadedWorks = []
     print(f"starting to check you {Fore.CYAN}{len(works)}{Fore.RESET} subsciption")
@@ -140,7 +140,7 @@ def main():
     compose(
         lambda setup: AO3.Session(setup["username"], setup["password"]),
         lambda session: session.get_work_subscriptions(use_threading=True),
-        loadWorkMetadata,
+        loadWorksMetadata,
         filterWitchToDownload,
         downloadWorks(downloadPath, setup["format"]),
     )(setup)
