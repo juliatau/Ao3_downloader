@@ -110,7 +110,10 @@ def loadWorkMetadata(works):
     print(f"starting to check you {Fore.CYAN}{len(works)}{Fore.RESET} subsciption")
     for work in works:
         loadedWorks.append(work)
-        threads.append(work.reload(threaded=True, load_chapters=False))
+        with warnings.catch_warnings(record=True) as w:
+            threads.append(work.reload(threaded=True, load_chapters=False))
+            if len(w) != 0:
+                print(f"{work.titles} might take a while")
     for thread in threads:
         thread.join()
     return loadedWorks
@@ -129,7 +132,6 @@ def main():
     compose(
         lambda setup: AO3.Session(setup["username"], setup["password"]),
         lambda session: session.get_work_subscriptions(use_threading=True),
-        lambda works: works,
         loadWorkMetadata,
         filterWitchToDownload,
         downloadWorks(downloadPath, setup["format"]),
