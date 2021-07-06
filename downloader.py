@@ -104,16 +104,21 @@ def downloadWorks(path, dFormat):
 
     return downloadWorks_
 
+def loadWorkMetadata(work):
+    with warnings.catch_warnings(record=True) as w:
+        work.reload(load_chapters=False)
+        if len(w) != 0:
+            print(f"{work.titles} might take a while")
+
+    return None
+
 def loadWorkMetadata(works):
     threads = []
     loadedWorks = []
     print(f"starting to check you {Fore.CYAN}{len(works)}{Fore.RESET} subsciption")
     for work in works:
         loadedWorks.append(work)
-        with warnings.catch_warnings(record=True) as w:
-            threads.append(work.reload(threaded=True, load_chapters=False))
-            if len(w) != 0:
-                print(f"{work.titles} might take a while")
+            threads.append(threading.Thread(target=loadWorkMetadata, arg=(work)))
     for thread in threads:
         thread.join()
     return loadedWorks
