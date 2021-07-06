@@ -114,7 +114,7 @@ def loadWorkMetadata(works):
             threads.append(work.reload(threaded=True))
             for thread in threads:
                 thread.join()
-    exec Warning:
+    except Warning:
         print(r"{Fore.ORANGE}This is can take a few momment{Fore.RESET}")
     return loadedWorks
 
