@@ -89,7 +89,7 @@ def filterWitchToDownload(works):
 
 def downloadWorks__(filePath, dFormat, work):
     work.download_to_file(filePath, dFormat)
-    sleep(0.5)
+    sleep(.05)
     print(f"{Fore.LIGHTGREEN_EX}Finished downloading {work.title}{Fore.RESET}")
 
 def downloadWorks(path, dFormat):
@@ -117,6 +117,7 @@ def loadWorkMetadata(work):
         work.reload(load_chapters=False)
         if len(w) != 0:
             print(f"{work.title} might take a while")
+    sleep(.05)
     return None
 
 def loadWorksMetadata(works):
