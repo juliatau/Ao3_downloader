@@ -9,8 +9,9 @@ import re
 from colorama import Fore
 import threading
 import warnings
+from time import sleep
 
-warnings.filterwarnings("ignore")
+# warnings.filterwarnings("ignore")
 
 CACHE="cache.json"
 
@@ -86,6 +87,11 @@ def filterWitchToDownload(works):
         filterWorks(works),
     )(CACHE)
 
+def downloadWorks__(filePath, dFormat, work):
+    work.download_to_file(filePath, dFormat)
+    sleep(0.5)
+    print(f"{Fore.LIGHTGREEN_EX}Finished downloading {work.title}{Fore.RESET}")
+
 def downloadWorks(path, dFormat):
     def downloadWorks_(works):
         if len(works) == 0:
@@ -96,7 +102,7 @@ def downloadWorks(path, dFormat):
             print(f"{Fore.BLUE}downloading{Fore.RESET} {work.title}")
             fileName = f"{work.title}.{dFormat}".replace("/", "\\")
             filePath = os.path.join(path, fileName)
-            newThread = threading.Thread(target=lambda : work.download_to_file(filePath, dFormat), args=())
+            newThread = threading.Thread(target=downloadWorks__, args=(filePath, dFormat, work))
             newThread.start()
             threads.append(newThread)
         for thread in threads:
