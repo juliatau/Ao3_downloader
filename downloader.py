@@ -46,6 +46,7 @@ def filterWorks(works):
         removedNotUpdated = [(work if souldDownload(cacheDict, work) else None ) for work in works]
         return list(filter(lambda work: operator.is_not(None, work), removedNotUpdated))
     return filterWorks_
+
 def updateCacheFile(old):
     def updateCacheFile_(current):
         if not old:
@@ -118,7 +119,7 @@ def loadWorkMetadata(work):
         work.reload(load_chapters=False)
         if len(w) != 0:
             print(f"{work.title} might take a while")
-    sleep(DELAY)
+        sleep(DELAY)
     return None
 
 def loadWorksMetadata(works):
