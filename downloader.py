@@ -147,7 +147,7 @@ def main():
     os.makedirs(downloadPath, exist_ok=True),
     compose(
         lambda setup: AO3.Session(setup["username"], setup["password"]),
-        lambda session: session.get_work_subscriptions(use_threading=True),
+        lambda session: session.get_work_subscriptions(use_threading=False),
         loadWorksMetadata,
         filterWitchToDownload,
         downloadWorks(downloadPath, setup["format"]),
