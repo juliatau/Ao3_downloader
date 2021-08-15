@@ -11,10 +11,11 @@ import threading
 import warnings
 from time import sleep
 
+AO3.utils.limit_requests(True)
 # warnings.filterwarnings("ignore")
 
 CACHE="cache.json"
-DELAY=0.1
+DELAY=0.0
 
 def compose(*functions):
     def compose2(g, f):
