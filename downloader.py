@@ -15,7 +15,6 @@ AO3.utils.limit_requests(True)
 # warnings.filterwarnings("ignore")
 
 CACHE="cache.json"
-DELAY=0.0
 
 def compose(*functions):
     def compose2(g, f):
@@ -92,7 +91,6 @@ def filterWitchToDownload(works):
 
 def downloadWorks__(filePath, dFormat, work):
     work.download_to_file(filePath, dFormat)
-    sleep(DELAY)
     print(f"{Fore.LIGHTGREEN_EX}Finished downloading {work.title}{Fore.RESET}")
 
 def downloadWorks(path, dFormat):
@@ -120,7 +118,6 @@ def loadWorkMetadata(work):
         work.reload(load_chapters=False)
         if len(w) != 0:
             print(f"{work.title} might take a while")
-        sleep(DELAY)
     return None
 
 def loadWorksMetadata(works):
